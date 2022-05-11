@@ -1,5 +1,16 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom'
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo'
 
-const root = createRoot(document.getElementById('app'))
-root.render(<h1>Seguimos con el curso avanzado de react</h1>)
+import { App } from './App'
+
+const client = new ApolloClient({
+  uri: 'https://petgram-server.midudev.now.sh/graphql'
+})
+
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById('app'))
